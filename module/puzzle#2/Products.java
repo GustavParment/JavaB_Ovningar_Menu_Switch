@@ -18,4 +18,23 @@ class Products {
         return Arrays.asList("Gucci bag", "Blue dress", "Diamond ring", "Iphone 15", "Fancy Dinner");
     }
 
+    protected void purchaseProduct (int currentBalance, int productPrice , List<String> purchasedProduct){
+
+        if (currentBalance >= productPrice) {
+
+            message("You purchased " + purchasedProduct);
+            currentBalance -= productPrice;
+            message("Current balance: " + currentBalance);
+
+        } else {
+
+            message("Insufficient funds for this purchase.");
+        }
+
+    }
+
+    protected void message(String message){
+        System.out.println(message);
+    }
+
 }
