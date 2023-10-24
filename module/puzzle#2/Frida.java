@@ -13,7 +13,7 @@ interface Frida {
 
         else if (currentBalance >= 10_000) return fridasMode.get(2);
 
-        else if (currentBalance <= 2000) return fridasMode.get(3);
+        else if (currentBalance <= 3000) return fridasMode.get(3);
 
         else return fridasMode.get(1);
     }

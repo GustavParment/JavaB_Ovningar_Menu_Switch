@@ -11,6 +11,7 @@ class Products {
    final int fancyDinnerPrice = 17_000;
 
 
+
     List<String> productList = new ArrayList<>(products());
 
     protected List<String> products() {
@@ -18,19 +19,35 @@ class Products {
         return Arrays.asList("Gucci bag", "Blue dress", "Diamond ring", "Iphone 15", "Fancy Dinner");
     }
 
-    protected void purchaseProduct (int currentBalance, int productPrice , List<String> purchasedProduct){
+    protected int purchaseProduct (int currentBalance, int productPrice , String purchasedProduct){
+
+        double discount = (productPrice * 0.1);
 
         if (currentBalance >= productPrice) {
 
             message("You purchased " + purchasedProduct);
             currentBalance -= productPrice;
-            message("Current balance: " + currentBalance);
+            message("Current balance: " + currentBalance + " kr");
+
+            if (productPrice > 700) {
+
+                currentBalance = (int) (productPrice - discount);
+                message("\nYou get a 10% discount");
+
+            }
 
         } else {
 
             message("Insufficient funds for this purchase.");
         }
 
+        return currentBalance;
+    }
+
+
+
+    public List<String> getProductList() {
+        return productList;
     }
 
     protected void message(String message){

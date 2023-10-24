@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,20 +11,14 @@ class ShoppingMenu extends Products implements Frida {
 
     protected void optionMenu() {
 
-
-
-        getOptionMenu(sc);
-
-        buyProduct(sc, productList);
+        do getOptionMenu(sc);while(true);
 
     }
 
 
-    protected void getOptionMenu(Scanner sc) {
+    protected int getOptionMenu(Scanner sc) {
 
-        do {
-
-            message("Choose an option ");
+            message("\nChoose an option ");
             message("1. Purchase products");
             message("2. See account balance");
             message("3. See how much Frida likes you");
@@ -35,19 +28,19 @@ class ShoppingMenu extends Products implements Frida {
 
             switch (option) {
 
-                case "1" -> currentBalance = buyProduct(sc, productList);
+                case "1" -> buyProduct(sc);
 
-                case "2" -> message("Account balance: " + currentBalance);
+                case "2" -> message("Account balance: " + currentBalance + " kr");
 
                 case "3" -> message(loveMeter(fridasMode, currentBalance));
 
                 case "4" -> System.exit(0);
             }
+            return currentBalance;
+        }
 
-        }while (true);
-    }
 
-    protected int buyProduct(Scanner sc, List<String> productList) {
+    protected void buyProduct(Scanner sc) {
 
 
         getOptionsProducts();
@@ -55,30 +48,30 @@ class ShoppingMenu extends Products implements Frida {
 
         switch (purchase) {
 
-            case "1" -> purchaseProduct(currentBalance, gucciBagPrice, Collections.singletonList(productList.get(0)));
+            case "1" -> currentBalance = purchaseProduct(currentBalance,gucciBagPrice,getProductList().get(0));
 
-            case "2" -> purchaseProduct(currentBalance, blueDressPrice, Collections.singletonList(productList.get(1)));
+            case "2" -> currentBalance = purchaseProduct(currentBalance,blueDressPrice,getProductList().get(1));
 
-            case "3" -> purchaseProduct(currentBalance, diamondRingPrice, Collections.singletonList(productList.get(2)));
+            case "3" -> currentBalance = purchaseProduct(currentBalance,diamondRingPrice,getProductList().get(2));
 
-            case "4" -> purchaseProduct(currentBalance, iphone15Price, Collections.singletonList(productList.get(3)));
+            case "4" -> currentBalance = purchaseProduct(currentBalance,iphone15Price,getProductList().get(3));
 
-            case "5" -> purchaseProduct(currentBalance, fancyDinnerPrice, Collections.singletonList(productList.get(4)));
+            case "5" -> currentBalance = purchaseProduct(currentBalance,fancyDinnerPrice,getProductList().get(4));
 
-            case "6" -> getOptionMenu(sc);
+            case "6" -> currentBalance = getOptionMenu(sc);
+
         }
 
-    return currentBalance;
     }
 
 
     protected void getOptionsProducts() {
 
-        message("1. To buy " + productList.get(0));
-        message("2. To buy " + productList.get(1));
-        message("3. To buy " + productList.get(2));
-        message("4. To buy " + productList.get(3));
-        message("5. To buy " + productList.get(4));
+        message("1. To buy " + productList.get(0) + " 700 kr");
+        message("2. To buy " + productList.get(1) + " 500 kr");
+        message("3. To buy " + productList.get(2) + " 10000 kr");
+        message("4. To buy " + productList.get(3) + " 7000 kr");
+        message("5. To buy " + productList.get(4) + " 17000 kr");
         message("6. to return to main menu");
 
 
